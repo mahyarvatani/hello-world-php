@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     echo "Cloning repository from GitHub..."
-                    git url: 'https://github.com/novrian6/php_docker_app.git', branch: 'main'
+                    git url: 'https://github.com/mahyarvatani/hello-world-php.git', branch: 'main'
 
                     echo "Listing workspace contents for verification..."
                     sh 'ls -la'  // Verify that the repository is cloned correctly
@@ -23,14 +23,9 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    echo "Building Docker image: ${DOCKER_IMAGE_NAME}:${DOCKER_TAG}"
+                    echo "Building Docker image: ......."
 
-                    // Debug to ensure Dockerfile exists in the correct directory
-                    sh 'ls -la'  // Verify the Dockerfile exists
 
-                    // Build the Docker image
-                    sh "docker build -t ${DOCKER_IMAGE_NAME}:${DOCKER_TAG} ."
-                }
             }
         }
     }
