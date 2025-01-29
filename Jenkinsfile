@@ -24,17 +24,10 @@ pipeline {
              script {
                         docker.image('php:8.2-cli').inside("-v /var/jenkins_mount:/workspace") {
                         sh """
-                        # Install Composer as root
-                        cat /etc/passwd
-                        php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-                        php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-                        php -r "unlink('composer-setup.php');"
-                        
-                        # Change ownership to the Jenkins user for further steps
-                        chown -R jenkins:jenkins /workspace
-                        
-                        # Run composer install
-                        cd /workspace/php_code
+                        docker.image('php:8.2-cli').inside("-v /home/admin/jenkins_data/jenkins_home/workspace:/workspace") {
+                        sh """
+                        cd /workspace/second-pipeline
+                        php -l index.php // Replace with your actual PHP entry file
                         composer install
                         """
                  }
