@@ -19,18 +19,19 @@ pipeline {
                 }
             }
         }
-
-        stage('Build Docker Image') {
+        stage('Build') {
             steps {
                 script {
-                    echo "Building Docker image: ......."
-
-
+                    docker.image('php:8.2-cli').inside("-v /home/admin/jenkins_data/jenkins_home/workspace:/workspace") {
+                        sh """
+                        cd /workspace/second
+                        php -l index.php // Linting PHP code
+                        composer install
+                        """
+                    }
+                }
             }
         }
-    }
-}
-
     post {
         success {
             echo "Pipeline executed successfully!"
