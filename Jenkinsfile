@@ -21,7 +21,7 @@ pipeline {
      stage('Build') {
          steps {
              script {
-                        docker.image('php:8.2-cli').inside("-v /home/admin/jenkins_data/jenkins_home/workspace:/workspace") {
+                        docker.image('php:8.2-fpm').inside("-v /home/admin/jenkins_data/jenkins_home/workspace:/workspace") {
                         sh """
                         cd /workspace/second-pipeline
                         php -l index.php // Replace with your actual PHP entry file
