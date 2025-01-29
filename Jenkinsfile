@@ -13,7 +13,6 @@ pipeline {
                 script {
                     echo "Cloning repository from GitHub..."
                     git url: 'https://github.com/mahyarvatani/hello-world-php.git', branch: 'main'
-
                     echo "Listing workspace contents for verification..."
                     sh 'ls -la'  // Verify that the repository is cloned correctly
                 }
@@ -25,7 +24,6 @@ pipeline {
                         docker.image('php:8.2-cli').inside("-v /var/jenkins_mount:/workspace") {
                         sh """
                         docker.image('php:8.2-cli').inside("-v /home/admin/jenkins_data/jenkins_home/workspace:/workspace") {
-                        sh """
                         cd /workspace/second-pipeline
                         php -l index.php // Replace with your actual PHP entry file
                         composer install
