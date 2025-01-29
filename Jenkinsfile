@@ -24,13 +24,11 @@ pipeline {
                         docker.image('php:8.2-fpm').inside("-u root -v /home/admin/jenkins_data/jenkins_home/workspace:/workspace") {
                         sh """
                         cd /workspace/second-pipeline
-                        php -l index.php
-                        # Install Composer if not installed
                         php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-                        php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+                        php composer-setup.php
                         php -r "unlink('composer-setup.php');"
-                        composer --version
-                        composer install
+                        php composer.phar install
+                        php -l index.php
                         """
                  }
             }
