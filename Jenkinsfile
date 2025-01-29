@@ -34,13 +34,12 @@ pipeline {
             }
          }
       }
-             stage('test') {
-         steps {
+     stage('test') {
+        steps {
              script {
                         docker.image('php:8.2-fpm').inside("-u root -v /home/admin/jenkins_data/jenkins_home/workspace:/workspace") {
                         sh """
                         cd /workspace/second-pipeline
-                        php composer.phar require --dev phpunit/phpunit
                         ./vendor/bin/phpunit tests
                         """
                  }
