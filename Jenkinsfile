@@ -25,6 +25,7 @@ pipeline {
                         sh """
                         cd /workspace/second-pipeline
                         php -l index.php // Replace with your actual PHP entry file
+                        composer --version
                         composer install
                         """
                  }
