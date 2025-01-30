@@ -1,0 +1,13 @@
+name: First Workflow
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: get the code
+      uses: actions/checkout@v4
+    - name: build the code
+      run: php -l index.php
