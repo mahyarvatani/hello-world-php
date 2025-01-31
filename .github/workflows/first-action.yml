@@ -2,23 +2,6 @@ name: First Workflow
 on: [push,workflow_dispatch]
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: get the code
-      uses: actions/checkout@v4
-
-      name: PHP CI/CD Pipeline
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
-jobs:
-  build:
     name: Build and Test PHP Code
     runs-on: ubuntu-latest
 
