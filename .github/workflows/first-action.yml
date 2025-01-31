@@ -7,7 +7,7 @@ jobs:
     - name: get the code
       uses: actions/checkout@v4
     - name: composer
-      run: php composer.phar install
+      run: composer install --no-progress --no-suggest --prefer-dist
     - name: build the code
       run: php -l index.php
     - name: deploy
