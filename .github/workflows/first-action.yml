@@ -4,7 +4,6 @@ jobs:
   build:
     name: Build and Test PHP Code
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
