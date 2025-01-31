@@ -6,5 +6,9 @@ jobs:
     steps:
     - name: get the code
       uses: actions/checkout@v4
+    - name: composer
+      run: php composer.phar install
     - name: build the code
       run: php -l index.php
+    - name: deploy
+      run: echo "Deploying ..."
