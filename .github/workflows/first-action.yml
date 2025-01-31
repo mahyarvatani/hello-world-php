@@ -6,8 +6,50 @@ jobs:
     steps:
     - name: get the code
       uses: actions/checkout@v4
-    - name: composer
-      run: composer install --no-progress --no-suggest --prefer-dist
+
+      name: PHP CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Test PHP Code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Set Up PHP 8.2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2' # Force PHP 8.2
+          extensions: mbstring, dom, curl, xml, json
+          tools: composer, phpunit
+          coverage: none
+
+      - name: Validate PHP Version
+        run: |
+          php -v  # Ensure PHP 8.2 is correctly installed
+          composer -V # Check Composer version
+
+      - name: Clear Composer Cache
+        run: |
+          composer clear-cache
+
+      - name: Remove Existing Composer Dependencies (If Needed)
+        run: |
+          rm -rf vendor composer.lock
+
+      - name: Install Dependencies
+        run: |
+          composer install --no-progress --no-suggest --prefer-dist
+          
     - name: build the code
       run: php -l index.php
     - name: deploy
